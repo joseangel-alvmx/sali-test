@@ -9,7 +9,9 @@ services:
       - ./src:/var/www/html
     depends_on:
       - mysql
-      
+      - php
+
+
   mysql:
     image: mysql:5.7
     ports:
@@ -21,4 +23,11 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
     volumes:
       - ./mysql:/var/lib/mysql
+      
+  php:
+    build: 
+      context: .
+      dockerfile: php.dockerfile
+    volumes:
+      - ./src:/var/www/html
 
